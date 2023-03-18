@@ -1,7 +1,9 @@
 from PIL import Image
 import os
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, DataLoader
 import numpy as np
+import config
+
 
 class HorseZebraDataset(Dataset):
     def __init__(self, root_zebra, root_horse, transform=None):
@@ -35,6 +37,10 @@ class HorseZebraDataset(Dataset):
 
         return zebra_img, horse_img
 
-
-
-
+# if __name__ == "__main__":
+#     dataset = HorseZebraDataset("datasets/horse2zebra/horse2zebra/trainB",
+#                                 "datasets/horse2zebra/horse2zebra/trainA",
+#                                 transform=config.transforms)
+#     loader = DataLoader(dataset, batch_size=2)
+#     for x, y in loader:
+#         print(x.shape)
