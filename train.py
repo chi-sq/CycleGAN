@@ -82,7 +82,7 @@ def train_fn(disc_DWI, disc_FLAIR, gen_FLAIR, gen_DWI, loader, opt_disc, opt_gen
         g_scaler.step(opt_gen)
         g_scaler.update()
 
-        if idx % 200 == 0:
+        if idx % 20 == 0:
             save_image(flair * 0.5 + 0.5, f"saved_images/tflair_{idx}.png")
             save_image(dwi * 0.5 + 0.5, f"saved_images/tdwi_{idx}.png")
             save_image(fake_dwi * 0.5 + 0.5, f"saved_images/gdwi_{idx}.png")
@@ -149,8 +149,8 @@ def main():
 
     for epoch in range(config.NUM_EPOCHS):
         train_fn(disc_DWI, disc_FLAIR, gen_FLAIR, gen_DWI, loader, opt_disc, opt_gen, L1, mse, d_scaler, g_scaler)
-
-        if config.SAVE_MODEL:
+        print(f"epoch{epoch+1} done!!!")
+        if config.SAVE_MODEL and epoch % 5 == 0:
             save_checkpoint(gen_DWI, opt_gen, filename=config.CHECKPOINT_GEN_DWI)
             save_checkpoint(gen_FLAIR, opt_gen, filename=config.CHECKPOINT_GEN_FLAIR)
             save_checkpoint(disc_DWI, opt_disc, filename=config.CHECKPOINT_CRITIC_DWI)

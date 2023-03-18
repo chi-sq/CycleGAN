@@ -10,13 +10,13 @@ from albumentations.pytorch import ToTensorV2
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 TRAIN_DIR = "DATA_PNG/train"
 VAL_DIR = "DATA_PNG/val"
-BATCH_SIZE = 1
+BATCH_SIZE = 4
 LEARNING_RATE = 1e-5
 LAMBDA_IDENTITY = 0.0
 LAMBDA_CYCLE = 10
 NUM_WORKERS = 4
-NUM_EPOCHS = 10
-LOAD_MODEL = False
+NUM_EPOCHS = 150
+LOAD_MODEL = True
 SAVE_MODEL = True
 CHECKPOINT_GEN_DWI = "genDWI.pth.tar"
 CHECKPOINT_GEN_FLAIR = "genFLAIR.pth.tar"
